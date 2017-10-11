@@ -7,19 +7,19 @@
 
 case $1 in 
 	start)
-		nohup ./PPGo_Job 2>&1 >> info.log 2>&1 /dev/null &
+		nohup ./easy-openshift 2>&1 >> info.log 2>&1 /dev/null &
 		echo "服务已启动..."
 		sleep 1
 	;;
 	stop)
-		killall PPGo_Job
+		killall easy-openshift
 		echo "服务已停止..."
 		sleep 1
 	;;
 	restart)
-		killall PPGo_Job
+		killall easy-openshift
 		sleep 1
-		nohup ./PPGo_Job 2>&1 >> info.log 2>&1 /dev/null &
+		nohup ./easy-openshift 2>&1 >> info.log 2>&1 /dev/null &
 		echo "服务已重启..."
 		sleep 1
 	;;

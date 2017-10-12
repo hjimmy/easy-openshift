@@ -19,7 +19,7 @@ INSTALL:
 
 	$ cd easy-openshift
 
-	$ cd  conf/app.conf
+	$ vim conf/app.conf
 
          Modify  your  config
 

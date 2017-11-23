@@ -1,0 +1,151 @@
+<!-- 新增服务器 -->
+<div class="container-fluid">
+    <div class="info-center">
+        <!--title-->
+        <div class="info-center">
+            <div class="page-header">
+                <div class="pull-left">
+                    <h4>{{.pageTitle}}</h4>
+                </div>
+                <div class="pull-right">
+                    <!--  <button type="button" class="btn btn-mystyle btn-sm refresh">刷新</button>
+                     <button type="button" class="btn btn-mystyle btn-sm reback">返回</button> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--content-list-->
+    <div class="content-list">
+        <form  action="{{urlfor "AppController.Edit"}}" method="post" class="form-horizontal">
+        <div class="form-group" style="margin-top: 15px">
+            <label class="col-sm-3 control-label" for="name">应用名称</label>
+            <div class="col-sm-3" >
+                <input type="text"  class="form-control input-sm" placeholder="" name="name" value="{{.app.Name}}" required />
+            </div>
+            <div class="col-sm-6" style="padding-top:5px;">
+
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 15px">
+            <label class="col-sm-3 control-label" for="ip">应用IP</label>
+            <div class="col-sm-3" >
+                <input type="text"  class="form-control input-sm" placeholder="root" name="IP" value="{{.app.Ip}}" required />
+            </div>
+            <div class="col-sm-6" style="padding-top:5px;">
+
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 15px">
+            <label class="col-sm-3 control-label" for="app_ip">应用端口</label>
+            <div class="col-sm-3" >
+                <input type="text"  class="form-control input-sm" placeholder="" name="port" value="{{.app.Port}}" required />
+            </div>
+            <div class="col-sm-6" style="padding-top:5px;">
+
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 15px">
+            <label class="col-sm-3 control-label" for="port">副本数</label>
+            <div class="col-sm-3" >
+                <input type="text"  class="form-control input-sm" placeholder="" name="replica" value="{{.app.Replica}}" required />
+            </div>
+            <div class="col-sm-6" style="padding-top:5px;">
+
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 15px">
+            <label class="col-sm-3 control-label" for="port">路由</label>
+            <div class="col-sm-3" >
+                <input type="text"  class="form-control input-sm" placeholder="" name="route" value="{{.app.Route}}" required />
+            </div>
+            <div class="col-sm-6" style="padding-top:5px;">
+
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top: 15px">
+            <label class="col-sm-3 control-label" for="port">存储空间</label>
+            <div class="col-sm-3" >
+                <input type="text"  class="form-control input-sm" placeholder="" name="size" value="{{.app.Size}}" required />
+            </div>
+            <div class="col-sm-6" style="padding-top:5px;">
+
+            </div>
+        </div>
+
+
+        <div class="form-group" style="margin-top: 15px">
+            <label class="col-sm-3 control-label" for="type">应用类型</label>
+            <div class="col-sm-6" >
+                <label class="radio-inline">
+                    <input type="radio" name="type"  value="0" {{if eq .app.Type 0}}checked{{end}}> owncloud
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="type"  value="1" {{if eq .app.Type 1}}checked{{end}}> mysql
+                </label>
+
+            </div>
+            <div class="col-sm-3" style="padding-top:5px;">
+
+            </div>
+        </div>
+
+
+        <div class="form-group" style="margin-top: 15px">
+            <label class="col-sm-3 control-label" for="detail">说明</label>
+            <div class="col-sm-5" >
+                <textarea name="detail" class="form-control" id="detail" rows="3">{{.app.Detail}}</textarea>
+            </div>
+            <div class="col-sm-4" style="padding-top:5px;">
+
+            </div>
+        </div>
+
+
+
+        <br />
+        <div class="modal-footer" style="text-align:center">
+            <input type="hidden" name="id" value="{{.app.Id}}" />
+            <button type="submit" class="btn btn-primary submit_attr_button">保存</button>
+            <button type="button" class="btn btn-default reback">返回</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $("form").submit(function () {
+            // $(".alert").hide();
+            $("button[type='submit']").attr('disabled', true);
+            $.post('{{urlfor "AppController.Edit"}}', $(this).serialize(), function (out) {
+                if (out.status == 0) {
+                    window.location.href = '{{urlfor "AppController.List"}}';
+                } else {
+                    alert_message(out.msg,"alert-danger","alert-success");
+                    $("button[type='submit']").attr('disabled', false);
+                }
+            }, "json");
+            return false;
+        });
+
+        $("input[name='type']").click(function () {
+            if ($(this).val() > 0) {
+                $("#password").addClass('hide');
+                $("#public_key_src").removeClass('hide');
+                $("#private_key_src").removeClass('hide');
+            } else {
+                $("#password").removeClass('hide');
+                $("#public_key_src").addClass('hide');
+                $("#private_key_src").addClass('hide');
+            }
+        });
+    });
+</script>

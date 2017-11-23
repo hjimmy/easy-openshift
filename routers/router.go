@@ -15,4 +15,5 @@ func init() {
 	beego.AutoRouter(&controllers.TaskController{})
 	beego.AutoRouter(&controllers.GroupController{})
 	beego.AutoRouter(&controllers.ServerController{})
+	beego.AutoRouter(&controllers.AppController{})
 }

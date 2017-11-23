@@ -140,8 +140,37 @@ CREATE TABLE `pp_task_server` (
 --  Records of `pp_task_server`
 -- ----------------------------
 BEGIN;
-INSERT INTO `pp_task_server` VALUES ('1', '密钥验证登录服务器', 'root', '172.16.210.157', '22', '', '/Users/haodaquan/.ssh/pp_rsa', '/Users/haodaquan/.ssh/pp_rsa.pub', '1', '远程服务器示例', '1502862723', '1502945893', '0'), ('4', '密码验证服务器', 'root', '172.16.210.157', '22', 'root', '', '', '0', '这是密码验证服务器', '1502945869', '1502945869', '0');
+INSERT INTO `pp_task_server` VALUES ('1', '密钥验证登录服务器', 'root', '172.16.210.157', '22', '', '/Users/haodaquan/.ssh/pp_rsa', '/Users/haodaquan/.ssh/pp_rsa.pub', '1', '远>程服务器示例', '1502862723', '1502945893', '0'), ('4', '密码验证服务器', 'root', '172.16.210.157', '22', 'root', '', '', '0', '这是密码验证服务器', '1502945869', '1502945869', '0');
 COMMIT;
+
+-- ----------------------------
+--  Table structure for `pp_task_app`
+-- ----------------------------
+DROP TABLE IF EXISTS `pp_task_app`;
+CREATE TABLE `pp_task_app` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `name` varchar(64) NOT NULL DEFAULT '0' COMMENT '应用名称',
+  `ip` varchar(20) NOT NULL DEFAULT '0' COMMENT '应用访问IP地址',
+  `port` int(11) unsigned NOT NULL COMMENT '应用端口',
+  `replica` int(11) unsigned NOT NULL COMMENT '应用副本数',
+  `route` varchar(20) NOT NULL DEFAULT '0' COMMENT '应用访问路由',
+  `size` varchar(20) NOT NULL DEFAULT '0' COMMENT '应用空间大小',
+  `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '应用类型：0-owncloud，1-mysql',
+  `detail` varchar(255) NOT NULL DEFAULT '0' COMMENT '备注',
+  `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态：0-正常，1-失败',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='应用列表';
+
+
+-- ----------------------------
+--  Records of `pp_task_app`
+-- ----------------------------
+BEGIN;
+INSERT INTO `pp_task_app` VALUES ('1', 'myowncloud', '10.1.110.161', 50001, 2, 'owncloud.cs2c.com.cn', '1G', 0, 'owncloud服务',  '1502945869', '1502945869', 0);
+COMMIT;
+
 
 -- ----------------------------
 --  Table structure for `pp_user`

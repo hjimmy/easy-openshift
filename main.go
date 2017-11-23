@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/astaxie/beego"
 	"github.com/hjimmy/easy-openshift/models"
+        "github.com/hjimmy/easy-openshift/openshift"
 	_ "github.com/hjimmy/easy-openshift/routers"
 	"github.com/hjimmy/easy-openshift/jobs"
 )

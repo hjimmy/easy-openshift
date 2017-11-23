@@ -91,7 +91,7 @@
                     <span class="glyphicon glyphicon-menu-hamburger"></span>
                 </div>
 
-                <div class="subNavBox">
+                <!--div class="subNavBox">
                     <div class="sBox">
                         <ul class="navContent" >
                             <li  {{if eq .curRoute "main.index"}}class="active"{{end}} id="home_page">
@@ -101,8 +101,8 @@
                             </li>
                         </ul>
                     </div>
-                </div>
-                <div class="subNavBox">
+                </div-->
+                <!--div class="subNavBox">
                     <div class="sBox">
                         <div class="subNav sublist-down">
                             <span class="title-icon glyphicon glyphicon-chevron-down"></span>
@@ -129,6 +129,7 @@
                                     <span class="sub-title">任务分类</span>
                                 </a>
                             </li>
+
                             <li {{if eq .curRoute "help.index"}}class="active"{{end}}>
                                 <div class="showtitle" style="width:100px;">
                                     使用帮助
@@ -140,9 +141,9 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div-->
 
-                <div class="subNavBox">
+                <!--div class="subNavBox">
                     <div class="sBox">
                         <div class="subNav sublist-down">
                             <span class="title-icon glyphicon glyphicon-chevron-down"></span>
@@ -161,9 +162,9 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div-->
 
-                <div class="subNavBox">
+                <!--div class="subNavBox">
                     <div class="sBox">
                         <div class="subNav sublist-down">
                             <span class="title-icon glyphicon glyphicon-chevron-down"></span>
@@ -182,8 +183,33 @@
                             </li>
                         </ul>
                     </div>
+                </div-->
+               <!-- added by jian.hou -->
+            <div class="subNavBox">
+                    <div class="sBox">
+                        <div class="subNav sublist-down">
+                            <span class="title-icon glyphicon glyphicon-chevron-down"></span>
+                            <span class="sublist-title">应用管理</span>
+                        </div>
+                        <ul class="navContent" >
+
+                            <li {{if eq .menuTag "server"}}class="active"{{end}}>
+                            <div class="showtitle" style="width:100px;">
+                                应用
+                            </div>
+                            <a href="/app/list">
+                                <span class="sublist-icon glyphicon glyphicon-hdd"></span>
+                                <span class="sub-title">应用</span>
+                            </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
             </div>
+
+
+
 
             <div class="right-product view-product right-full">
                 <!--message     start-->

@@ -1,0 +1,4 @@
+oc whoami -t 
+oadm policy add-scc-to-user anyuid -n test2 -z default
+curl -X GET -H "Authorization: Bearer 96vfyt9_gMBZkS8L_3GEgEcRFdootbgQehx8nUpk3hA" https://127.0.0.1:8443/api/v1/namespaces/owncloud/replicationcontrollers --insecure
+oc exec -it owncloud-1-0vp75 /bin/bash

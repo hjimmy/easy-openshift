@@ -19,8 +19,13 @@ type TaskApp struct {
         Port    int
 	Replica  int
 	Route    string
+<<<<<<< HEAD
+	Size     int
+	Type          string
+=======
 	Size     string
 	Type          int
+>>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
 	Detail        string
 	CreateTime    int64
 	UpdateTime    int64
@@ -35,6 +40,10 @@ func (t *TaskApp) Update(fields ...string) error {
 	if t.Name == "" {
 		return fmt.Errorf("App名不能为空")
 	}
+<<<<<<< HEAD
+        fmt.Println(t.Ip)
+=======
+>>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
 	if t.Ip == "" {
 		return fmt.Errorf("App IP 地址不能为空")
 	}
@@ -54,7 +63,11 @@ func (t *TaskApp) Update(fields ...string) error {
 		return fmt.Errorf("副本数必须大于1")
 	}
 
+<<<<<<< HEAD
+	if t.Type == ""  {
+=======
 	if t.Type == 0  {
+>>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
 		return fmt.Errorf("App 类型不能为空")
 	}
 
@@ -79,7 +92,11 @@ func TaskAppAdd(obj *TaskApp) (int64, error) {
                 return 0, fmt.Errorf("登录账户不能为空")
         }
 
+<<<<<<< HEAD
+        if obj.Type == ""  {
+=======
         if obj.Type == 0  {
+>>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
                 return 0, fmt.Errorf("App 类型不能为空")
         }
 

@@ -33,17 +33,7 @@ func (this *AppController) List() {
 	for k, v := range result {
 		row := make(map[string]interface{})
 		row["id"] = v.Id
-<<<<<<< HEAD
 		row["type"] = v.Type
-=======
-		apptype := v.Type
-                switch apptype {
-                    case 0:
-			row["type"] = "owncloud"
-                    case 1:
-			row["type"] = "mysql"
-		}
->>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
 		row["name"] = v.Name
 		row["ip"] = v.Ip
                 row["port"] = v.Port
@@ -69,29 +59,17 @@ func (this *AppController) Add() {
 		app.Ip = strings.TrimSpace(this.GetString("ip"))
 		app.Port,_ = strconv.Atoi(this.GetString("port"))
                 app.Replica,_ = strconv.Atoi(this.GetString("replica"))
-<<<<<<< HEAD
                 app.Size,_ = strconv.Atoi(this.GetString("size"))
                 app.Route = strings.TrimSpace(this.GetString("route"))
 		app.Type = strings.TrimSpace(this.GetString("type"))
-=======
-                app.Size = strings.TrimSpace(this.GetString("size"))
-                app.Route = strings.TrimSpace(this.GetString("route"))
-		app.Type,_ = strconv.Atoi(this.GetString("type"))
->>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
 		app.Detail = strings.TrimSpace(this.GetString("detail"))
 		app.CreateTime = time.Now().Unix()
 		app.UpdateTime = time.Now().Unix()
 		app.Status = 0
-<<<<<<< HEAD
                 fmt.Println(app.Type)
                 if app.Type == "owncloud"{
 		    fmt.Println(openshift.Serveraddr)
                     openshift.Create_owncloud(app.Name, app.Port, app.Size, app.Type, app.Replica)
-=======
-                fmt.Println(app_Type)
-                if app.Type == 0{
-                    openshift.create_owncloud(app.Name, app.Port, app.Size, owncloud, app.Replica)
->>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
                 }
 		_, err := models.TaskAppAdd(app)
                 
@@ -106,10 +84,7 @@ func (this *AppController) Add() {
 
 func (this *AppController) Edit() {
 	id, _ := this.GetInt("id")
-<<<<<<< HEAD
         fmt.Println(id)
-=======
->>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
 	app, err := models.TaskAppGetById(id)
 	if err != nil {
 		this.showMsg(err.Error())
@@ -118,7 +93,6 @@ func (this *AppController) Edit() {
 	if this.isPost() {
 		app.Name = strings.TrimSpace(this.GetString("name"))
 		app.Ip = strings.TrimSpace(this.GetString("ip"))
-<<<<<<< HEAD
                 app.Port,_ = strconv.Atoi(this.GetString("port")) 
 		app.Replica,_ = strconv.Atoi(this.GetString("replica"))
 		app.Route = strings.TrimSpace(this.GetString("route"))
@@ -131,12 +105,6 @@ func (this *AppController) Edit() {
 		if app.Type == "owncloud"{
 		    openshift.Update_owncloud(app.Name, app.Type, app.Port, app.Replica)
                 }
-=======
-		app.Type,_ = strconv.Atoi(this.GetString("type"))
-		app.Detail = strings.TrimSpace(this.GetString("detail"))
-		//app.UpdateTime = time.Now().Unix()
-		app.Status = 0
->>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
 		err := app.Update()
 		if err != nil {
 			this.ajaxMsg(err.Error(), MSG_ERR)
@@ -164,7 +132,6 @@ func (this *AppController) Batch() {
 		}
 		switch action {
 		case "delete":
-<<<<<<< HEAD
                      fmt.Println(id)
 		     app, err := models.TaskAppGetById(id)
                      if err != nil {
@@ -176,10 +143,6 @@ func (this *AppController) Batch() {
 			    //删除数据库中内容
                             models.TaskAppDelById(id)
 		     }
-=======
-			//查询服务器是否被占用
-		        models.TaskAppDelById(id)
->>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
 		}
 	}
 

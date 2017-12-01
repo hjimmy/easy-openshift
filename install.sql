@@ -154,13 +154,8 @@ CREATE TABLE `pp_task_app` (
   `port` int(11) unsigned NOT NULL COMMENT '应用端口',
   `replica` int(11) unsigned NOT NULL COMMENT '应用副本数',
   `route` varchar(20) NOT NULL DEFAULT '0' COMMENT '应用访问路由',
-<<<<<<< HEAD
   `size` int(11) NOT NULL DEFAULT '0' COMMENT '应用空间大小',
   `type` varchar(20) NOT NULL DEFAULT 'owncloud' COMMENT '应用类型：owncloud，mysql',
-=======
-  `size` varchar(20) NOT NULL DEFAULT '0' COMMENT '应用空间大小',
-  `type` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '应用类型：0-owncloud，1-mysql',
->>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
   `detail` varchar(255) NOT NULL DEFAULT '0' COMMENT '备注',
   `create_time` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
   `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
@@ -173,11 +168,7 @@ CREATE TABLE `pp_task_app` (
 --  Records of `pp_task_app`
 -- ----------------------------
 BEGIN;
-<<<<<<< HEAD
 INSERT INTO `pp_task_app` VALUES ('1', 'myowncloud', '10.1.110.161', 50001, 2, 'owncloud.cs2c.com.cn', '1', 'owncloud', 'owncloud服务',  '1502945869', '1502945869', 0);
-=======
-INSERT INTO `pp_task_app` VALUES ('1', 'myowncloud', '10.1.110.161', 50001, 2, 'owncloud.cs2c.com.cn', '1G', 0, 'owncloud服务',  '1502945869', '1502945869', 0);
->>>>>>> 9170e3490fd9e3343c696cb5ee73c67accb698fd
 COMMIT;
 
 

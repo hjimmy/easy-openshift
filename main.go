@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/astaxie/beego"
 	"github.com/hjimmy/easy-openshift/models"
-        "github.com/hjimmy/easy-openshift/openshift"
 	_ "github.com/hjimmy/easy-openshift/routers"
 	"github.com/hjimmy/easy-openshift/jobs"
 )
@@ -11,6 +10,18 @@ import (
 const (
 	VERSION = "1.0.0"
 )
+/*
+var counter int = 0
+
+func Count(lock *sync.Mutex) {
+   for {
+    lock.Lock()
+    counter++
+    fmt.Println(counter)
+    lock.Unlock()
+   }
+}
+*/
 
 func init() {
 	//初始化数据模型
@@ -19,6 +30,9 @@ func init() {
 }
 
 func main() {
+ //       lock := &sync.Mutex{}
+ //   	go Count(lock)
+
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.Run()
 }

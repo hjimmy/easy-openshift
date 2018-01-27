@@ -1,5 +1,5 @@
-//package openshift
-package main
+package openshift
+//package main
 
 import (
 	"fmt"
@@ -14,6 +14,9 @@ import (
 	"container/list"
 //	"os/exec"
         //"os"
+         "sync"
+//	"runtime"
+
 )
 
 
@@ -451,6 +454,25 @@ func Get_podlist(appname string, pname string, objname string, rcname string) (p
     return podlist
 }
 
+func Get_pod_status(appname string, pname string, objname string, rcname string) (podlist *list.List){
+
+    body := Get_obj(appname, pname, objname, "pods")
+    yaml, _ := simpleyaml.NewYaml(body)
+    podarray, err := yaml.Get("items").Array()
+    Check(err)
+    podlen := len(podarray)
+    podlist = list.New()
+    for i := 0; i < podlen; i++ {
+       pod_name, err:= yaml.Get("items").GetIndex(i).Get("metadata").Get("name").String()
+       Check(err)
+       if strings.HasPrefix(pod_name, rcname){
+             podlist.PushBack(pod_name)
+       }
+
+    }
+    return podlist
+}
+
 
 /* Update service must kown service's latest version, so we need to get service to get latest version */
 func Get_service_rversion(appname string, pname string, objname string) (service ServiceUpdate){
@@ -795,10 +817,20 @@ func Create_app(appname string, pname string, nodeport int, size int,replica int
    Create_obj(appname, pname, replica ,nodeport, size, "services")
 }
 
+var counter int = 0
+func Count(lock *sync.Mutex) { 
+   for {
+    lock.Lock() 
+    counter++ 
+    fmt.Println(counter) 
+    lock.Unlock() 
+   }
+} 
 
 
 
 func main(){
+/*
     var nodeport int
     var size int
     var replica int
@@ -818,5 +850,10 @@ func main(){
     //Get_rcname("owncloud", "owncloud")
     //Get_podlist("owncloud", "owncloud", "owncloud-1")   
     //Get_obj("owncloud", "owncloud", "owncloud", "services")
+*/
+
+    lock := &sync.Mutex{}
+    go Count(lock)
+
 }
 

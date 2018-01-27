@@ -67,10 +67,8 @@ func (this *AppController) Add() {
 		app.UpdateTime = time.Now().Unix()
 		app.Status = 0
                 fmt.Println(app.Type)
-                if app.Type == "owncloud"{
-		    fmt.Println(openshift.Serveraddr)
-                    openshift.Create_owncloud(app.Name, app.Port, app.Size, app.Type, app.Replica)
-                }
+		fmt.Println(openshift.Serveraddr)
+                openshift.Create_app(app.Name, app.Type, app.Port, app.Size, app.Replica)
 		_, err := models.TaskAppAdd(app)
                 
 		if err != nil {
@@ -101,10 +99,8 @@ func (this *AppController) Edit() {
 		app.Detail = strings.TrimSpace(this.GetString("detail"))
 		app.UpdateTime = time.Now().Unix()
 		app.Status = 0
-		
-		if app.Type == "owncloud"{
-		    openshift.Update_owncloud(app.Name, app.Type, app.Port, app.Replica)
-                }
+                openshift.Update_obj(app.Name, app.Type, app.Replica, app.Port, app.Name, "port")
+                openshift.Update_obj(app.Name, app.Type, app.Replica, app.Port, app.Name, "replica")
 		err := app.Update()
 		if err != nil {
 			this.ajaxMsg(err.Error(), MSG_ERR)
@@ -137,12 +133,10 @@ func (this *AppController) Batch() {
                      if err != nil {
                        this.showMsg(err.Error())
                      }
-                     if app.Type == "owncloud"{
-                    	    fmt.Println(openshift.Serveraddr)
-                    	    openshift.Delete_owncloud(app.Name, app.Type)
-			    //删除数据库中内容
-                            models.TaskAppDelById(id)
-		     }
+                     fmt.Println(openshift.Serveraddr)
+                     openshift.Delete_app(app.Name, app.Type)
+	             //删除数据库中内容
+                     models.TaskAppDelById(id)
 		}
 	}
 
